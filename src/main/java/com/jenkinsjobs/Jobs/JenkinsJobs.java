@@ -34,6 +34,7 @@ import org.xml.sax.InputSource;
 
 import com.jenkinsjobs.model.JobConfiguration;
 import com.jenkinsjobs.model.JobStatus;
+import com.jenkinsjobs.model.sfJobConfiguration;
 import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.model.Build;
 import com.offbytwo.jenkins.model.BuildWithDetails;
@@ -294,14 +295,14 @@ public class JenkinsJobs {
 	}
 	//create new job (source - Salesforce Org, Target - Salesforce Org)
 		@RequestMapping(value="/createsfjob", method=RequestMethod.POST)
-		public ResponseEntity createSfJob(@RequestBody JobConfiguration jobDetails) {
+		public ResponseEntity createSfJob(@RequestBody sfJobConfiguration jobDetails) {
 			String xml = "hello";
 			HashMap<String,String> sfJobConfig = new HashMap<String,String>();
 			Context context = new Context();
 			context.setVariable("sfJobConfig", sfJobConfig);
 			
 			sfJobConfig.put("description", jobDetails.getDescription());							
-			sfJobConfig.put("targets", jobDetails.getBuildTargets());
+			sfJobConfig.put("targets", jobDetails.getTargets());
 			sfJobConfig.put("source_org_credential_id", jobDetails.getTargetOrgCredentialId());
 			sfJobConfig.put("target_org_credential_id", jobDetails.getTargetOrgCredentialId());
 			String xmlConfig = this.templateEngine.process("sfconfig", context);
