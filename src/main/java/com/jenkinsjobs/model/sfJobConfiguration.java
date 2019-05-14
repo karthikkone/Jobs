@@ -3,7 +3,7 @@ package com.jenkinsjobs.model;
 public class sfJobConfiguration {
 	private String jobName;
 	private String description;
-	private String Targets;
+	private String buildTargets;
 	private String sourceOrgCredentialId;
 	private String targetOrgCredentialId;
 	
@@ -24,12 +24,7 @@ public class sfJobConfiguration {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getTargets() {
-		return Targets;
-	}
-	public void setTargets(String targets) {
-		Targets = targets;
-	}
+	
 	public String getSourceOrgCredentialId() {
 		return sourceOrgCredentialId;
 	}
@@ -48,7 +43,7 @@ public class sfJobConfiguration {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Targets == null) ? 0 : Targets.hashCode());
+		result = prime * result + ((buildTargets == null) ? 0 : buildTargets.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((jobName == null) ? 0 : jobName.hashCode());
 		result = prime * result + ((sourceOrgCredentialId == null) ? 0 : sourceOrgCredentialId.hashCode());
@@ -64,10 +59,10 @@ public class sfJobConfiguration {
 		if (getClass() != obj.getClass())
 			return false;
 		sfJobConfiguration other = (sfJobConfiguration) obj;
-		if (Targets == null) {
-			if (other.Targets != null)
+		if (buildTargets == null) {
+			if (other.buildTargets != null)
 				return false;
-		} else if (!Targets.equals(other.Targets))
+		} else if (!buildTargets.equals(other.buildTargets))
 			return false;
 		if (description == null) {
 			if (other.description != null)
@@ -93,9 +88,16 @@ public class sfJobConfiguration {
 	}
 	@Override
 	public String toString() {
-		return "sfJobConfiguration [jobName=" + jobName + ", description=" + description + ", Targets=" + Targets
-				+ ", sourceOrgCredentialId=" + sourceOrgCredentialId + ", targetOrgCredentialId="
+		return "sfJobConfiguration [jobName=" + jobName + ", description=" + description + ", buildTargets="
+				+ buildTargets + ", sourceOrgCredentialId=" + sourceOrgCredentialId + ", targetOrgCredentialId="
 				+ targetOrgCredentialId + "]";
 	}
+	public String getBuildTargets() {
+		return buildTargets;
+	}
+	public void setBuildTargets(String buildTargets) {
+		this.buildTargets = buildTargets;
+	}
+	
 	
 }
