@@ -308,8 +308,8 @@ public class JenkinsJobs {
 			
 			
 			try {
-				//jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
-				jenkins = new JenkinsServer(new URI("http://localhost:8080/"), "kirti", "kirti");
+				jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
+				//jenkins = new JenkinsServer(new URI("http://localhost:8080/"), "kirti", "kirti");
 				jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
 				
 			} catch (URISyntaxException e) {
