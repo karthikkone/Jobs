@@ -292,7 +292,7 @@ public class JenkinsJobs {
 		}
 		return new ResponseEntity(HttpStatus.OK);
 	}
-	//create new job (source - GIT, Target - Salesforce Org)
+	//create new job (source - Salesforce Org, Target - Salesforce Org)
 		@RequestMapping(value="/createsfjob", method=RequestMethod.POST)
 		public ResponseEntity createSfJob(@RequestBody JobConfiguration jobDetails) {
 			String xml = "hello";
