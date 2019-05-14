@@ -59,8 +59,8 @@ public class JobsApplication {
 	SpringResourceTemplateResolver xmlTemplateResolver(ApplicationContext appCtx) {
 		SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setApplicationContext(appCtx);
-		//templateResolver.setPrefix("classpath:/templates/");
-		templateResolver.setPrefix("templates/");
+		templateResolver.setPrefix("classpath:/templates/");
+		//templateResolver.setPrefix("templates/");
 		templateResolver.setSuffix(".xml");
 		templateResolver.setTemplateMode(TemplateMode.XML);
 		templateResolver.setCacheable(false);
