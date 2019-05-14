@@ -297,6 +297,7 @@ public class JenkinsJobs {
 		@RequestMapping(value="/createsfjob", method=RequestMethod.POST)
 		public ResponseEntity createSfJob(@RequestBody sfJobConfiguration jobDetails) {
 			String xml = "hello";
+			System.out.println("data :"+jobDetails.toString());
 			HashMap<String,String> sfJobConfig = new HashMap<String,String>();
 			Context context = new Context();
 			context.setVariable("sfJobConfig", sfJobConfig);
