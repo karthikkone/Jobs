@@ -43,7 +43,7 @@ password2=$sfpassword2</properties>
     <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.16">
       <bindings>
         <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
-          <credentialsId th:text="${sfconfig['target_org_credential_id']}"></credentialsId>
+          <credentialsId th:text="${sfconfig['source_org_credential_id']}"></credentialsId>
           <usernameVariable>sfusername1</usernameVariable>
           <passwordVariable>sfpassword1</passwordVariable>
         </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
