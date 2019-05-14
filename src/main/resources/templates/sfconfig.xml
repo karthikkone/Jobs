@@ -1,6 +1,6 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
-  <description th:text="${jobConfig['description']}"></description>
+  <description th:text="${sfconfig['description']}"></description>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.3">
@@ -30,7 +30,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Ant plugin="ant@1.9">
-      <targets th:text="${jobConfig['targets']}"></targets>
+      <targets th:text="${sfconfig['targets']}"></targets>
       <buildFile>C:\TestOrg1\build_sf_to_sf.xml</buildFile>
       <properties>username1=$sfusername1
 password1=$sfpassword2
@@ -43,12 +43,12 @@ password2=$sfpassword2</properties>
     <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.16">
       <bindings>
         <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
-          <credentialsId th:text="${jobConfig['target_org_credential_id']}"></credentialsId>
+          <credentialsId th:text="${sfconfig['target_org_credential_id']}"></credentialsId>
           <usernameVariable>sfusername1</usernameVariable>
           <passwordVariable>sfpassword1</passwordVariable>
         </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
         <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
-          <credentialsId th:text="${jobConfig['target_org_credential_id']}"></credentialsId>
+          <credentialsId th:text="${sfconfig['target_org_credential_id']}"></credentialsId>
           <usernameVariable>sfusername2</usernameVariable>
           <passwordVariable>sfpassword2</passwordVariable>
         </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
