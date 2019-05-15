@@ -306,6 +306,7 @@ public class JenkinsJobs {
 			sfJobConfig.put("targets", jobDetails.getBuildTargets());
 			sfJobConfig.put("source_org_credential_id", jobDetails.getSourceOrgCredentialId());
 			sfJobConfig.put("target_org_credential_id", jobDetails.getTargetOrgCredentialId());
+			System.out.println("sfjobconfig map :"+sfJobConfig);
 			String xmlConfig = this.templateEngine.process("sfconfig", context);
 			
 			
