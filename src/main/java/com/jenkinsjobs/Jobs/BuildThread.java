@@ -1,5 +1,6 @@
 package com.jenkinsjobs.Jobs;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,6 +89,12 @@ public class BuildThread implements Runnable {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
 					currentBuild.setBuildstatus("Successfully Completed");
+					try {
+						currentBuild.setLog(build.details().getConsoleOutputText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
@@ -97,17 +104,27 @@ public class BuildThread implements Runnable {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
 					currentBuild.setBuildstatus("Build Failed");
+					try {
+						currentBuild.setLog(build.details().getConsoleOutputText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
 			
 			if (build.details().getResult() == build.details().getResult().ABORTED)
-			{
-				System.out.println("detail result :"+build.details().getConsoleOutputText());
-				System.out.println("detail result :"+build.details().getConsoleOutputHtml());
+			{				
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
 					currentBuild.setBuildstatus("Build Stopped");
+					try {
+						currentBuild.setLog(build.details().getConsoleOutputText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
