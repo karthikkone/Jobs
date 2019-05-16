@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class BuildThread implements Runnable {
 	
-	@Value("${jenkins.url}")
+		@Value("${jenkins.url}")
     	private String Url;
 
     	@Value("${jenkins.username}")
@@ -58,7 +58,7 @@ public class BuildThread implements Runnable {
 	public void run() {
 		try {		
 			//jenkins
-			 //jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
+			 jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
 			
 			JobWithDetails jobinfo = jenkins.getJob(this.buildName);
 			if(JobParams.size()>0)
@@ -120,7 +120,7 @@ public class BuildThread implements Runnable {
 	       //running = false;
 	       //interrupt();
 	       try {	       
-		 //jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password); 
+		 jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password); 
 		   
 		while(queueItem == null)
 		{
