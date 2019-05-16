@@ -188,7 +188,7 @@ public class JenkinsJobs {
 		Jsonobj.put("BuildParams",Params);
 		if(Params.size() == 0)
 		{
-		Thread b= new Thread(new BuildThread(selectedJob.getBuildid(),buildname,jobsRepository,Params));
+		Thread b= new Thread(new BuildThread(this.Url,this.Username,this.password,selectedJob.getBuildid(),buildname,jobsRepository,Params));
 		b.start();
 		}
 		//BuildThread b = new BuildThread(selectedJob.getBuildid(),buildname,jobsRepository);
@@ -233,7 +233,7 @@ public class JenkinsJobs {
 	
 		try {
 			System.out.println("Parametrs received from URL :"+Params);
-			Thread build= new Thread(new BuildThread(buildid,buildname,jobsRepository,Params));
+			Thread build= new Thread(new BuildThread(this.Url,this.Username,this.password,buildid,buildname,jobsRepository,Params));
 			build.start();
 			
 		}
