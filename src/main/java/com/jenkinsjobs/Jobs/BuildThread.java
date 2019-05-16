@@ -19,18 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-@Component
-public class BuildThread implements Runnable {
-	
-		@Value("${jenkins.url}")
-    	private String Url;
 
-    	@Value("${jenkins.username}")
-    	private String Username;
-
-    	@Value("${jenkins.password}")
-    	private String password;
-	
+public class BuildThread implements Runnable {	
+		
+    private String Url;    	
+    private String Username;    	
+    private String password;	
 	private String buildName;
 	private Long buildId;
 	private static final Long DEFAULT_RETRY_INTERVAL = 200L;
@@ -47,12 +41,15 @@ public class BuildThread implements Runnable {
 	}
 	@Autowired
 	//public BuildThread(long buildId,String buildName, JobStatusRepo jobsRepository,HashMap<String, String> JobParams) {
-	public BuildThread(long buildId,String buildName, JobStatusRepo jobsRepository,Map<String, String> JobParams) 
+	public BuildThread(String url,String username,String password,long buildId,String buildName, JobStatusRepo jobsRepository,Map<String, String> JobParams) 
 	{
 		this.buildId = buildId;
 		this.buildName = buildName;
 		this.jobsRepository = jobsRepository;
 		this.JobParams =JobParams;
+		this.Url = url;
+		this.Username = username;
+		this.password = password;
 	} 
 
 	@Override
