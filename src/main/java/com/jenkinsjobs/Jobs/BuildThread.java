@@ -103,7 +103,7 @@ public class BuildThread implements Runnable {
 			
 			if (build.details().getResult() == build.details().getResult().ABORTED)
 			{
-				System.out.println("detail result :"+build.details().getResult());
+				System.out.println("detail result :"+build.details().getConsoleOutputText());
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
 					currentBuild.setBuildstatus("Build Stopped");
