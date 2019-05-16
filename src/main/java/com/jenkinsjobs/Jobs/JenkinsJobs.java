@@ -186,6 +186,7 @@ public class JenkinsJobs {
 		Jsonobj.put("Buildstatus", selectedJob.getBuildstatus());		
 		Jsonobj.put("Paramtype",Paramtypes);	
 		Jsonobj.put("BuildParams",Params);
+		Jsonobj.put("log",selectedJob.getLog());
 		if(Params.size() == 0)
 		{
 		Thread b= new Thread(new BuildThread(this.Url,this.Username,this.password,selectedJob.getBuildid(),buildname,jobsRepository,Params));
