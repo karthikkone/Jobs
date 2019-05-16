@@ -129,7 +129,7 @@ public class JenkinsJobs {
 		jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
 		JobWithDetails jobinfo = jenkins.getJob(buildname);
 		String jobxml = jenkins.getJobXml(buildname);		
-		System.out.println("XML :"+jobxml);	
+		//System.out.println("XML :"+jobxml);	
 		org.w3c.dom.Document doc = convertStringToXMLDocument(jobxml);	
 		NodeList list = doc.getElementsByTagName("parameterDefinitions");
 	    	for (int i=0; i< list.getLength(); i++) {	    	
