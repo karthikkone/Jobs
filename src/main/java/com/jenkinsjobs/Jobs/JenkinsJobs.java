@@ -180,14 +180,14 @@ public class JenkinsJobs {
 		JobStatus jobStat = new JobStatus();
 		jobStat.setBuildname(buildname);
 		jobStat.setBuildstatus("In Progress");	
-		jobStat.setLog("");
+		//jobStat.setLog("");
 		JobStatus selectedJob = jobsRepository.saveAndFlush(jobStat);   
 		Jsonobj.put("Buildid", selectedJob.getBuildid());
 		Jsonobj.put("Buildname", selectedJob.getBuildname());
 		Jsonobj.put("Buildstatus", selectedJob.getBuildstatus());		
 		Jsonobj.put("Paramtype",Paramtypes);	
 		Jsonobj.put("BuildParams",Params);	
-		Jsonobj.put("log","");	
+		//Jsonobj.put("log","");	
 		if(Params.size() == 0)
 		{
 		Thread b= new Thread(new BuildThread(this.Url,this.Username,this.password,selectedJob.getBuildid(),buildname,jobsRepository,Params));
@@ -219,7 +219,7 @@ public class JenkinsJobs {
 			Jsonobj.put("Buildid", job.getBuildid());
 			Jsonobj.put("Buildname", job.getBuildname());
 			Jsonobj.put("Buildstatus", job.getBuildstatus());
-			Jsonobj.put("log",job.getLog());
+			//Jsonobj.put("log",job.getLog());
 			return Jsonobj;
 		}
 		catch(Exception e)
