@@ -12,7 +12,7 @@ public class JobStatus {
 	private Long buildid;
 	private String buildname;
 	private String buildstatus;
-	private String log;
+	//private String log;
 	public JobStatus()
 	{
 		
@@ -24,12 +24,6 @@ public class JobStatus {
 		this.buildstatus = buildstatus;
 	}
 	
-	public String getLog() {
-		return log;
-	}
-	public void setLog(String log) {
-		this.log = log;
-	}
 	public Long getBuildid() {
 		return buildid;
 	}
@@ -46,7 +40,7 @@ public class JobStatus {
 		result = prime * result + ((buildid == null) ? 0 : buildid.hashCode());
 		result = prime * result + ((buildname == null) ? 0 : buildname.hashCode());
 		result = prime * result + ((buildstatus == null) ? 0 : buildstatus.hashCode());
-		result = prime * result + ((log == null) ? 0 : log.hashCode());
+		
 		return result;
 	}
 	@Override
@@ -72,12 +66,7 @@ public class JobStatus {
 			if (other.buildstatus != null)
 				return false;
 		} else if (!buildstatus.equals(other.buildstatus))
-			return false;
-		if (log == null) {
-			if (other.log != null)
-				return false;
-		} else if (!log.equals(other.log))
-			return false;
+			return false;		
 		return true;
 	}
 	public void setBuildname(String buildname) {
