@@ -12,9 +12,15 @@ public class JobStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long buildid;
+	public JSONObject getLogs() {
+		return logs;
+	}
+	public void setLogs(JSONObject logs) {
+		this.logs = logs;
+	}
 	private String buildname;
 	private String buildstatus;		
-	
+	private JSONObject logs = new JSONObject();
 	public JobStatus()
 	{
 		
@@ -41,8 +47,8 @@ public class JobStatus {
 		int result = 1;
 		result = prime * result + ((buildid == null) ? 0 : buildid.hashCode());
 		result = prime * result + ((buildname == null) ? 0 : buildname.hashCode());
-		result = prime * result + ((buildstatus == null) ? 0 : buildstatus.hashCode());	
-		
+		result = prime * result + ((buildstatus == null) ? 0 : buildstatus.hashCode());
+		result = prime * result + ((logs == null) ? 0 : logs.hashCode());
 		return result;
 	}
 	@Override
@@ -68,13 +74,18 @@ public class JobStatus {
 			if (other.buildstatus != null)
 				return false;
 		} else if (!buildstatus.equals(other.buildstatus))
-			return false;		
-		
+			return false;
+		if (logs == null) {
+			if (other.logs != null)
+				return false;
+		} else if (!logs.equals(other.logs))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "JobStatus [buildid=" + buildid + ", buildname=" + buildname + ", buildstatus=" + buildstatus + "]";
+		return "JobStatus [buildid=" + buildid + ", buildname=" + buildname + ", buildstatus=" + buildstatus + ", logs="
+				+ logs + "]";
 	}
 	public void setBuildname(String buildname) {
 		this.buildname = buildname;
