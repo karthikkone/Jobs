@@ -105,7 +105,8 @@ public class BuildThread implements Runnable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					currentBuild.setLogs(Jsonobj);
+					//currentBuild.setLogs(Jsonobj);
+					System.out.println("logs :"+Jsonobj);
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
