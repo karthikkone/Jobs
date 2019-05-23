@@ -97,22 +97,7 @@ public class BuildThread implements Runnable {
 			if (build.details().getResult() == build.details().getResult().FAILURE) {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Build Failed");
-					JSONObject Jsonobj = new JSONObject();
-					try {
-						Jsonobj.put("log", build.details().getConsoleOutputText());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					currentBuild.setLogs(Jsonobj);
-					System.out.println("logs :"+Jsonobj);
-					/*try {
-						currentBuild.setLogs(build.details().getConsoleOutputText().toString());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}*/
+					currentBuild.setBuildstatus("Build Failed");					
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
