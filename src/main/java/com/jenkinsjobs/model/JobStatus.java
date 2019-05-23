@@ -14,7 +14,7 @@ public class JobStatus {
 	private Long buildid;	
 	private String buildname;
 	private String buildstatus;		
-	private JSONObject logs;
+	private JSONObject logs = null;
 	
 	public JobStatus()
 	{
