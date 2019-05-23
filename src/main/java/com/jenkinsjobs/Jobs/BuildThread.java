@@ -88,16 +88,24 @@ public class BuildThread implements Runnable {
 			if(build.details().getResult() == build.details().getResult().SUCCESS) {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Successfully Completed");					
+					currentBuild.setBuildstatus("Successfully Completed");						
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
-
+	
 			//build fail
 			if (build.details().getResult() == build.details().getResult().FAILURE) {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Build Failed");					
+					currentBuild.setBuildstatus("Build Failed");	
+					try {
+						StringBuilder str = new StringBuilder(build.details().getConsoleOutputText());
+						System.out.println("log in str builder"+str.toString());
+						currentBuild.setLog(str.toString());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
