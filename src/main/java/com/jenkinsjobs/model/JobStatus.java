@@ -14,11 +14,10 @@ public class JobStatus {
 	private Long buildid;	
 	private String buildname;
 	private String buildstatus;		
-	private JSONObject logs;
 	
 	public JobStatus()
 	{
-		logs = new JSONObject();
+		
 	}
 	public JobStatus(String buildname, String buildstatus) {
 		super();
@@ -26,12 +25,7 @@ public class JobStatus {
 		this.buildname = buildname;
 		this.buildstatus = buildstatus;
 	}
-	public JSONObject getLogs() {
-		return logs;
-	}
-	public void setLogs(JSONObject logs) {
-		this.logs = logs;
-	}
+	
 	public Long getBuildid() {
 		return buildid;
 	}
