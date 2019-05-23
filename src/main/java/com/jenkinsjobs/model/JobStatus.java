@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import net.sf.json.JSONObject;
+
 @Entity
 public class JobStatus {
 	@Id
@@ -13,10 +15,17 @@ public class JobStatus {
 	private String buildname;
 	private String buildstatus;
 	private String log;
+	private JSONObject logs;
+	public JSONObject getLogs() {
+		return logs;
+	}
+	public void setLogs(JSONObject logs) {
+		this.logs = logs;
+	}
 	@Override
 	public String toString() {
 		return "JobStatus [buildid=" + buildid + ", buildname=" + buildname + ", buildstatus=" + buildstatus + ", log="
-				+ log + "]";
+				+ log + ", logs=" + logs + "]";
 	}
 	public String getLog() {
 		return log;
@@ -52,6 +61,7 @@ public class JobStatus {
 		result = prime * result + ((buildname == null) ? 0 : buildname.hashCode());
 		result = prime * result + ((buildstatus == null) ? 0 : buildstatus.hashCode());
 		result = prime * result + ((log == null) ? 0 : log.hashCode());
+		result = prime * result + ((logs == null) ? 0 : logs.hashCode());
 		return result;
 	}
 	@Override
@@ -82,6 +92,11 @@ public class JobStatus {
 			if (other.log != null)
 				return false;
 		} else if (!log.equals(other.log))
+			return false;
+		if (logs == null) {
+			if (other.logs != null)
+				return false;
+		} else if (!logs.equals(other.logs))
 			return false;
 		return true;
 	}
