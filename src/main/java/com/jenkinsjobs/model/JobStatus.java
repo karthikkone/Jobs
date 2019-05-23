@@ -11,13 +11,7 @@ import net.sf.json.JSONObject;
 public class JobStatus {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long buildid;
-	public JSONObject getLogs() {
-		return logs;
-	}
-	public void setLogs(JSONObject logs) {
-		this.logs = logs;
-	}
+	private Long buildid;	
 	private String buildname;
 	private String buildstatus;		
 	private JSONObject logs = new JSONObject();
@@ -31,7 +25,12 @@ public class JobStatus {
 		this.buildname = buildname;
 		this.buildstatus = buildstatus;
 	}
-	
+	public JSONObject getLogs() {
+		return logs;
+	}
+	public void setLogs(JSONObject logs) {
+		this.logs = logs;
+	}
 	public Long getBuildid() {
 		return buildid;
 	}
