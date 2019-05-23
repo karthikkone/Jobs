@@ -14,10 +14,10 @@ public class JobStatus {
 	private Long buildid;	
 	private String buildname;
 	private String buildstatus;		
-	private JSONObject logs = new JSONObject();
+	private JSONObject logs;
 	public JobStatus()
 	{
-		
+		logs = new JSONObject();
 	}
 	public JobStatus(String buildname, String buildstatus) {
 		super();
