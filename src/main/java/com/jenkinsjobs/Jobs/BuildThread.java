@@ -97,8 +97,7 @@ public class BuildThread implements Runnable {
 			if (build.details().getResult() == build.details().getResult().FAILURE) {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Build Failed");	
-					
+					currentBuild.setBuildstatus("Build Failed");					
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
