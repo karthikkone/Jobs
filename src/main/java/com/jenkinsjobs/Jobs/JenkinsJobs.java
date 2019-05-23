@@ -219,7 +219,7 @@ public class JenkinsJobs {
 			Jsonobj.put("Buildid", job.getBuildid());
 			Jsonobj.put("Buildname", job.getBuildname());
 			Jsonobj.put("Buildstatus", job.getBuildstatus());
-			//Jsonobj.put("log",job.getLogs());
+			Jsonobj.put("log",job.getLogs());
 			return Jsonobj;
 		}
 		catch(Exception e)
