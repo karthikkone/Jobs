@@ -40,52 +40,7 @@ public class JobStatus {
 	public String getBuildname() {
 		return buildname;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((buildid == null) ? 0 : buildid.hashCode());
-		result = prime * result + ((buildname == null) ? 0 : buildname.hashCode());
-		result = prime * result + ((buildstatus == null) ? 0 : buildstatus.hashCode());
-		result = prime * result + ((logs == null) ? 0 : logs.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		JobStatus other = (JobStatus) obj;
-		if (buildid == null) {
-			if (other.buildid != null)
-				return false;
-		} else if (!buildid.equals(other.buildid))
-			return false;
-		if (buildname == null) {
-			if (other.buildname != null)
-				return false;
-		} else if (!buildname.equals(other.buildname))
-			return false;
-		if (buildstatus == null) {
-			if (other.buildstatus != null)
-				return false;
-		} else if (!buildstatus.equals(other.buildstatus))
-			return false;
-		if (logs == null) {
-			if (other.logs != null)
-				return false;
-		} else if (!logs.equals(other.logs))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "JobStatus [buildid=" + buildid + ", buildname=" + buildname + ", buildstatus=" + buildstatus + ", logs="
-				+ logs + "]";
-	}
+	
 	public void setBuildname(String buildname) {
 		this.buildname = buildname;
 	}
