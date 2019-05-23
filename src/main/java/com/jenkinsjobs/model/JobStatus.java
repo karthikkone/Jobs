@@ -18,7 +18,7 @@ public class JobStatus {
 	
 	public JobStatus()
 	{
-		logs = new JSONObject();
+		
 	}
 	public JobStatus(String buildname, String buildstatus) {
 		super();
