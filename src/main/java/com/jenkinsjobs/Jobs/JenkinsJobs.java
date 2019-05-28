@@ -284,8 +284,8 @@ public class JenkinsJobs {
 		
 		try {
 			jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
-			jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
-			
+			//jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
+			jenkins.updateJob(jobDetails.getJobName(), xmlConfig, true);
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
