@@ -283,9 +283,24 @@ public class JenkinsJobs {
 		
 		
 		try {
-			jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
-			//jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
-			jenkins.updateJob(jobDetails.getJobName(), xmlConfig, true);
+			 jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
+			 List<String> jobnames = new ArrayList<String>();    
+	         Map<String, Job> jobs = jenkins.getJobs();
+	         //System.out.println("new jobs... :"+jobs);	                 
+	         for (String jobnm: jobs.keySet())
+	         {
+	             jobnames.add(jobnm);
+	             
+	         }
+	         if(jobnames.contains(jobDetails.getJobName()))
+	         {
+	        	 jenkins.updateJob(jobDetails.getJobName(), xmlConfig, true);
+	         }
+	         else
+	         {
+	        	 jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
+	         }
+			
 		} catch (URISyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -315,8 +330,23 @@ public class JenkinsJobs {
 			
 			try {
 				jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
-				//jenkins = new JenkinsServer(new URI("http://localhost:8080/"), "kirti", "kirti");
-				jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
+				jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
+				 List<String> jobnames = new ArrayList<String>();    
+		         Map<String, Job> jobs = jenkins.getJobs();
+		         //System.out.println("new jobs... :"+jobs);	                 
+		         for (String jobnm: jobs.keySet())
+		         {
+		             jobnames.add(jobnm);
+		             
+		         }
+		         if(jobnames.contains(jobDetails.getJobName()))
+		         {
+		        	 jenkins.updateJob(jobDetails.getJobName(), xmlConfig, true);
+		         }
+		         else
+		         {
+		        	 jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
+		         }
 				
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
