@@ -88,7 +88,13 @@ public class BuildThread implements Runnable {
 			if(build.details().getResult() == build.details().getResult().SUCCESS) {
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Successfully Completed");						
+					currentBuild.setBuildstatus("Successfully Completed");	
+					try {
+						currentBuild.setLogs(build.details().getConsoleOutputText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
@@ -112,7 +118,13 @@ public class BuildThread implements Runnable {
 			{				
 				Optional<JobStatus> currentBuildRecord = this.jobsRepository.findById(buildId);
 				currentBuildRecord.ifPresent(currentBuild -> {
-					currentBuild.setBuildstatus("Build Stopped");					
+					currentBuild.setBuildstatus("Build Stopped");	
+					try {
+						currentBuild.setLogs(build.details().getConsoleOutputText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					jobsRepository.saveAndFlush(currentBuild);
 				});
 			}
