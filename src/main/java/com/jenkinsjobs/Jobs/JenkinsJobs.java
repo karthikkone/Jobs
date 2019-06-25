@@ -32,6 +32,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.jenkinsjobs.model.IncrementalConfig;
 import com.jenkinsjobs.model.JobConfiguration;
 import com.jenkinsjobs.model.JobStatus;
 import com.jenkinsjobs.model.sfJobConfiguration;
@@ -331,6 +332,54 @@ public class JenkinsJobs {
 			try {
 				jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
 				jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
+				 List<String> jobnames = new ArrayList<String>();    
+		         Map<String, Job> jobs = jenkins.getJobs();
+		         //System.out.println("new jobs... :"+jobs);	                 
+		         for (String jobnm: jobs.keySet())
+		         {
+		             jobnames.add(jobnm);
+		             
+		         }
+		         if(jobnames.contains(jobDetails.getJobName()))
+		         {
+		        	 jenkins.updateJob(jobDetails.getJobName(), xmlConfig, true);
+		         }
+		         else
+		         {
+		        	 jenkins.createJob(jobDetails.getJobName(), xmlConfig, true);
+		         }
+				
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+			return new ResponseEntity(HttpStatus.OK);
+		}
+		
+		//create new Incremental job (source - GIT, Target - Salesforce Org)
+		@RequestMapping(value="/createIncrementalJob", method=RequestMethod.POST)
+		public ResponseEntity createIncrementalJob(@RequestBody IncrementalConfig jobDetails) {
+			String xml = "hello";
+			HashMap<String,String> jobConfig = new HashMap<String,String>();			
+			Context context = new Context();
+			context.setVariable("jobConfig", jobConfig);
+			
+			jobConfig.put("description", jobDetails.getDescription());
+			jobConfig.put("github_project_url", jobDetails.getGithubProject());
+			jobConfig.put("github_credential_id", jobDetails.getGithubCredentialId());
+			jobConfig.put("git_branch", jobDetails.getGitBranch());			
+			jobConfig.put("targets", jobDetails.getBuildTargets());
+			jobConfig.put("target_org_credential_id", jobDetails.getTargetOrgCredentialId());
+			jobConfig.put("metadata", jobDetails.getMetadata());
+			String xmlConfig = this.templateEngine.process("job-config", context);
+			
+			
+			try {
+				 jenkins = new JenkinsServer(new URI(this.Url), this.Username, this.password);
 				 List<String> jobnames = new ArrayList<String>();    
 		         Map<String, Job> jobs = jenkins.getJobs();
 		         //System.out.println("new jobs... :"+jobs);	                 
