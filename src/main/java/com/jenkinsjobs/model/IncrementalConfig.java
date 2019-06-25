@@ -11,7 +11,7 @@ public class IncrementalConfig {
 	private String githubCredentialId;
 	private String targetOrgCredentialId;
 	private String buildTargets;
-	private String[] metadata;
+	private String metadata;
 	
 	
 	public String getJobName() {
@@ -71,11 +71,11 @@ public class IncrementalConfig {
 	}
 
 	public String getMetadata() {
-		String ToString = String.join("", metadata);
-		return ToString;
+		//String ToString = String.join("", metadata);
+		return metadata;
 	}
 
-	public void setMetadata(String[] metadata) {
+	public void setMetadata(String metadata) {
 		this.metadata = metadata;
 	}
 
