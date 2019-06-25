@@ -1,7 +1,7 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description th:text="${sfJobConfig['description']}"></description>
+  <description th:text="${JobConfig['description']}"></description>
   <keepDependencies>false</keepDependencies>
   <properties>   
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
@@ -13,7 +13,7 @@
         <hudson.model.TextParameterDefinition>
           <name>metadata</name>
           <description></description>
-          <defaultValue th:text="${sfJobConfig['metadata']}"></defaultValue>
+          <defaultValue th:text="${JobConfig['metadata']}"></defaultValue>
           <trim>false</trim>
         </hudson.model.TextParameterDefinition>
       </parameterDefinitions>
@@ -67,7 +67,7 @@ workspace=$WORKSPACE
     <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.17">
       <bindings>
         <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
-          <credentialsId th:text="${sfJobConfig['target_org_credential_id']}"></credentialsId>
+          <credentialsId th:text="${JobConfig['target_org_credential_id']}"></credentialsId>
           <usernameVariable>username</usernameVariable>
           <passwordVariable>password</passwordVariable>
         </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
