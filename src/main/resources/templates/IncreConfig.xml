@@ -1,0 +1,78 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description th:text="${incJobConfig['description']}"></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>    
+    <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.29">
+      <autoRebuild>false</autoRebuild>
+      <rebuildDisabled>false</rebuildDisabled>
+    </com.sonyericsson.rebuild.RebuildSettings>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.plugins.global__variable__string__parameter.GlobalVariableStringParameterDefinition plugin="global-variable-string-parameter@1.2">
+          <name>metadata</name>
+          <description></description>
+          <defaultValue th:text="${incJobConfig['metadata']}"></defaultValue>
+          <trim>false</trim>
+        </hudson.plugins.global__variable__string__parameter.GlobalVariableStringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@3.9.3">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url th:text="${incJobConfig['github_project_url']}"></url>
+        <credentialsId th:text="${incJobConfig['github_credential_id']}"></credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name th:text="${incJobConfig['git_branch']}"></name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <gitTool>Default</gitTool>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>C:/PROGRA~2/Jenkins/jobs/Incremental_Build/workspace/Jenkins_Parameters.sh $JOB_NAME $metadata</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Ant plugin="ant@1.9">
+      <targets th:text="${incJobConfig['targets']}"></targets>
+      <buildFile>C:\Program Files (x86)\Jenkins\jobs\Incremental_Build\build.xml</buildFile>
+      <properties>username=$username
+password=$password
+workspace=$WORKSPACE
+loginurl=https://login.salesforce.com/</properties>
+    </hudson.tasks.Ant>
+  </builders>
+  <publishers/>
+  <buildWrappers>
+    <hudson.plugins.ws__cleanup.PreBuildCleanup plugin="ws-cleanup@0.37">
+      <deleteDirs>false</deleteDirs>
+      <cleanupParameter></cleanupParameter>
+      <externalDelete></externalDelete>
+      <disableDeferredWipeout>false</disableDeferredWipeout>
+    </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    <org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper plugin="credentials-binding@1.17">
+      <bindings>
+        <org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+          <credentialsId th:text="${incJobConfig['target_org_credential_id']}"></credentialsId>
+          <usernameVariable>username</usernameVariable>
+          <passwordVariable>password</passwordVariable>
+        </org.jenkinsci.plugins.credentialsbinding.impl.UsernamePasswordMultiBinding>
+      </bindings>
+    </org.jenkinsci.plugins.credentialsbinding.impl.SecretBuildWrapper>
+    <hudson.tasks.AntWrapper plugin="ant@1.9"/>
+  </buildWrappers>
+</project>
