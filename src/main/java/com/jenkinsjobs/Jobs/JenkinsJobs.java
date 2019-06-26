@@ -364,18 +364,19 @@ public class JenkinsJobs {
 		@RequestMapping(value="/createIncrementalJob", method=RequestMethod.POST)
 		public ResponseEntity createIncrementalJob(@RequestBody IncrementalConfig jobDetails) {
 			String xml = "hello";
-			HashMap<String,String> jobConfig = new HashMap<String,String>();			
+			HashMap<String,String> incJobConfig = new HashMap<String,String>();			
 			Context context = new Context();
-			context.setVariable("jobConfig", jobConfig);
+			context.setVariable("incJobConfig", incJobConfig);
 			
-			jobConfig.put("description", jobDetails.getDescription());
-			jobConfig.put("github_project_url", jobDetails.getGithubProject());
-			jobConfig.put("github_credential_id", jobDetails.getGithubCredentialId());
-			jobConfig.put("git_branch", jobDetails.getGitBranch());			
-			jobConfig.put("targets", jobDetails.getBuildTargets());
-			jobConfig.put("target_org_credential_id", jobDetails.getTargetOrgCredentialId());
-			jobConfig.put("metadata", jobDetails.getMetadata());
-			String xmlConfig = this.templateEngine.process("job-config", context);
+			incJobConfig.put("description", jobDetails.getDescription());
+			incJobConfig.put("github_project_url", jobDetails.getGithubProject());
+			incJobConfig.put("github_credential_id", jobDetails.getGithubCredentialId());
+			incJobConfig.put("git_branch", jobDetails.getGitBranch());			
+			incJobConfig.put("targets", jobDetails.getBuildTargets());
+			incJobConfig.put("target_org_credential_id", jobDetails.getTargetOrgCredentialId());
+			incJobConfig.put("metadata", jobDetails.getMetadata());
+			System.out.println("incremental job details :"+incJobConfig);
+			String xmlConfig = this.templateEngine.process("IncreConfig", context);
 			
 			
 			try {
